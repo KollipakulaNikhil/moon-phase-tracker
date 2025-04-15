@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Phase Explorer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars-container"></div>
+    <div class="aurora-container">
+        <div class="aurora"></div>
+    </div>
+
+    <div class="user-profile hidden" id="userProfile">
+        <div class="user-avatar" onclick="toggleUserDropdown()">
+            <span id="userInitial"></span>
+        </div>
+        <div class="user-dropdown" id="userDropdown">
+            <div class="user-info">
+                <h3 id="profileUsername"></h3>
+                <p id="lastLogin"></p>
+                <p id="totalCalculations"></p>
+            </div>
+            <button onclick="logout()" class="logout-button">Logout</button>
+        </div>
+    </div>
+
+    <div class="auth-container" id="authContainer">
+        <div class="auth-box" id="loginForm">
+            <div class="cute-moon">
+                <div class="moon-face">
+                    <div class="eyes"></div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            <h2>Welcome Back! ✨</h2>
+            <form onsubmit="handleLogin(event)">
+                <div class="input-group">
+                    <input type="text" id="loginUsername" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="loginPassword" required>
+                    <label>Password</label>
+                </div>
+                <button type="submit" class="cute-button">Login</button>
+            </form>
+            <p class="switch-form">New here? <a href="#" onclick="toggleForm('signup')">Sign up!</a></p>
+        </div>
+
+        <div class="auth-box hidden" id="signupForm">
+            <div class="cute-moon">
+                <div class="moon-face">
+                    <div class="eyes"></div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            <h2>Create Account ✨</h2>
+            <form onsubmit="handleSignup(event)">
+                <div class="input-group">
+                    <input type="text" id="signupUsername" required>
+                    <label>Username</label>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="signupPassword" required>
+                    <label>Password</label>
+                </div>
+                <button type="submit" class="cute-button">Sign Up</button>
+            </form>
+            <p class="switch-form">Already have an account? <a href="#" onclick="toggleForm('login')">Login!</a></p>
+        </div>
+    </div>
+
+    <div class="main-container hidden" id="mainContainer">
+        <div class="calculator-box">
+            <h1>🌙 Moon Phase Explorer</h1>
+            <div class="input-section">
+                <div class="date-picker">
+                    <input type="date" id="dateInput">
+                </div>
+                <button onclick="calculateMoonPhase()" class="calculate-button">
+                    <span>Check Moon Phase</span>
+                </button>
+            </div>
+
+            <div id="loading" class="loading hidden">
+                <div class="moon-loader"></div>
+                <p>Calculating...</p>
+            </div>
+
+            <div id="result" class="result hidden">
+                <div class="moon-display">
+                    <img id="moonImage" alt="Moon Phase">
+                    <div class="phase-info">
+                        <h3 id="phaseName"></h3>
+                        <p id="illumination"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="error" class="error hidden"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

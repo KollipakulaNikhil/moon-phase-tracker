@@ -1,0 +1,279 @@
+:root {
+    --primary: #ffd6e7;
+    --secondary: #b5c9ff;
+    --accent: #ffb7f5;
+    --text: #6a4b7d;
+    --error: #ff6b6b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.stars-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.aurora-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.aurora {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, 
+        rgba(0, 255, 255, 0.1),
+        rgba(255, 0, 255, 0.1),
+        rgba(0, 255, 0, 0.1)
+    );
+    filter: blur(60px);
+    animation: aurora 15s linear infinite;
+}
+
+.user-profile {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform 0.3s;
+}
+
+.user-avatar:hover {
+    transform: scale(1.1);
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 15px;
+    min-width: 200px;
+    display: none;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.user-dropdown.show {
+    display: block;
+    animation: dropdownFade 0.3s ease;
+}
+
+.user-info {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.user-info h3 {
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.user-info p {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+    margin: 4px 0;
+}
+
+.auth-container, .main-container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.auth-box, .calculator-box {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cute-moon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+}
+
+.input-group {
+    position: relative;
+    margin: 20px 0;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 183, 245, 0.3);
+}
+
+label {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.7);
+    transition: all 0.3s;
+    pointer-events: none;
+}
+
+input:focus ~ label,
+input:valid ~ label {
+    top: -10px;
+    left: 10px;
+    font-size: 12px;
+    background: rgba(26, 26, 46, 0.8);
+    padding: 0 5px;
+    color: var(--accent);
+}
+
+.cute-button, .calculate-button, .logout-button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: var(--text);
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.cute-button:hover, .calculate-button:hover, .logout-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 183, 245, 0.3);
+}
+
+.hidden {
+    display: none;
+}
+
+.moon-display {
+    text-align: center;
+    margin: 30px 0;
+}
+
+#moonImage {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(255, 214, 0, 0.3);
+}
+
+.error {
+    color: var(--error);
+    text-align: center;
+    margin-top: 10px;
+}
+
+.loading {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.moon-loader {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: var(--accent);
+    animation: spin 1s linear infinite;
+    margin: 0 auto;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes aurora {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes dropdownFade {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 480px) {
+    .auth-box, .calculator-box {
+        padding: 20px;
+    }
+
+    #moonImage {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .user-profile {
+        top: 10px;
+        left: 10px;
+    }
+}
